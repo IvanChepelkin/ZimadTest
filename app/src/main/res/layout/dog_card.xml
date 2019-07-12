@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/card_news_item_margins"
-    android:layout_marginTop="@dimen/card_news_item_margins"
-    android:layout_marginRight="@dimen/card_news_item_margins"
-    android:layout_marginBottom="@dimen/card_news_item_margins"
-    card_view:cardCornerRadius="@dimen/card_news_item_corner_radius"
-    card_view:cardElevation="@dimen/card_news_item_elevation"
-    card_view:contentPadding="@dimen/card_news_item_padding">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="5dp"
+    card_view:contentPadding="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,59 +21,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <ImageView
+                android:id="@+id/newsChannelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/newsChannelName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:textSize="@dimen/news_channel_name_text_size"
-                    android:textStyle="italic" />
-                <TextView
-                    android:id="@+id/datePublication"
+                    android:id="@+id/dog_item_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/date_news_text_size"
+                    android:textSize="12sp"
                     android:textStyle="italic" />
-
+                <TextView
+                    android:id="@+id/dog_item_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/newsItemTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/title_text_size"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/newsItemContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/content_text_size"
-                android:textStyle="italic" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/sendGuideButton"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/lineral"
-            android:layout_alignEnd="@+id/lineral"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/ic_share_black_8dp" />
-
-
 
     </RelativeLayout>
 
