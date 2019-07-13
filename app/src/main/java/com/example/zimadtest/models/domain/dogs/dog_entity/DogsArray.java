@@ -10,9 +10,9 @@ public class DogsArray {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
+    @SerializedName("dogItemList")
     @Expose
-    private List<DogItem> data = null;
+    private List<DogItem> dogItemList = null;
 
     public String getMessage() {
         return message;
@@ -22,12 +22,12 @@ public class DogsArray {
         this.message = message;
     }
 
-    public List<DogItem> getData() {
-        return data;
+    public List<DogItem> getDogItemList() {
+        return dogItemList;
     }
 
-    public void setData(List<DogItem> data) {
-        this.data = data;
+    public void setDogItemList(List<DogItem> dogItemList) {
+        this.dogItemList = dogItemList;
     }
 
 }
