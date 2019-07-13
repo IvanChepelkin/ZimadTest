@@ -5,29 +5,21 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DogsArray {
+public class Dogs {
 
     @SerializedName("message")
     @Expose
     private String message;
     @SerializedName("dogItemList")
     @Expose
-    private List<DogItem> dogItemList = null;
+    private List<DogItem> dogItemList;
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public List<DogItem> getDogItemList() {
         return dogItemList;
-    }
-
-    public void setDogItemList(List<DogItem> dogItemList) {
-        this.dogItemList = dogItemList;
     }
 
 }
