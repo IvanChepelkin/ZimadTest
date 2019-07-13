@@ -17,7 +17,7 @@ public class DogsRemoteImpl implements DogsRemote {
     @Override
     public Single<Dogs> getDogs() {
         return retrofitService.createClient(BASE_URL)
-                .getUserList()
+                .getDogs()
                 .subscribeOn(Schedulers.io());
     }
 }

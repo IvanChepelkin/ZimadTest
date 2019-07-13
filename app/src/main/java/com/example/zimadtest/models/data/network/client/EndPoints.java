@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 
 public interface EndPoints {
     @GET()
-    Single<Dogs> getUserList();
+    Single<Dogs> getDogs();
 }
