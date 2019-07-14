@@ -10,16 +10,16 @@ public class Dogs {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("dogItemList")
+    @SerializedName("data")
     @Expose
-    private List<DogItem> dogItemList;
+    private List<DogItem> data = null;
 
     public String getMessage() {
         return message;
     }
 
     public List<DogItem> getDogItemList() {
-        return dogItemList;
+        return data;
     }
 
 }
