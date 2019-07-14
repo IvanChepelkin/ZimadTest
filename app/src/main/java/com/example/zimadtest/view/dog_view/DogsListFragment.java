@@ -1,4 +1,4 @@
-package com.example.zimadtest.view;
+package com.example.zimadtest.view.dog_view;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -15,19 +15,31 @@ import com.example.zimadtest.R;
 import com.example.zimadtest.di.model_factory.ModelFactory;
 import com.example.zimadtest.viewModels.DogViewModel;
 
-public class DogsListFragment extends Fragment {
-    RecyclerView dogRecyclerView;
-    DogViewModel model;
+public class DogsListFragment extends Fragment implements DogAdapter.ItemListener{
+    private RecyclerView dogRecyclerView;
+    private DogAdapter dogAdapter;
+    private DogViewModel model;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dogs_fragment, container, false);
+
         dogRecyclerView = (RecyclerView) v.findViewById(R.id.dog_recyclerView);
+
+        dogAdapter = new DogAdapter(this);
         dogRecyclerView.setHasFixedSize(true);
+        DogAdapter dogAdapter = new DogAdapter(this);;
         dogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         model = ViewModelProviders.of(this, new ModelFactory()).get(DogViewModel.class);
         return v;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
 

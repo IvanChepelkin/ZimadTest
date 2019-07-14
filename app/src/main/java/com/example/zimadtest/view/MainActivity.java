@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
 import com.example.zimadtest.R;
+import com.example.zimadtest.view.dog_view.DogsListFragment;
 
 public class MainActivity extends AppCompatActivity {
 

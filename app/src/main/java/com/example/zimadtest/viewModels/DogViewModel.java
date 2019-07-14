@@ -30,7 +30,6 @@ public class DogViewModel extends ViewModel {
 
                     @Override
                     public void onSuccess(Dogs dogs) {
-                        System.out.println("Собачка " + dogs.getDogItemList());
 
                     }
 

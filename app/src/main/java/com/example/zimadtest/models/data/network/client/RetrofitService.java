@@ -6,13 +6,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class RetrofitService {
+
+    private final String BASE_URL = "https://kot3.com/";
 
     public RetrofitService() {
     }
 
-    public EndPoints createClient(String base_url) {
+    public EndPoints createClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -20,7 +21,7 @@ public class RetrofitService {
                 .addInterceptor(interceptor);
 
         return new Retrofit.Builder()
-                .baseUrl(base_url)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client.build())

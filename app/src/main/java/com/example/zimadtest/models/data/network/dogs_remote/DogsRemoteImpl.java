@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class DogsRemoteImpl implements DogsRemote {
     private RetrofitService retrofitService;
-    private String BASE_URL = "https://kot3.com/";
+
 
     public DogsRemoteImpl(RetrofitService retrofitService) {
         this.retrofitService = retrofitService;
@@ -16,7 +16,7 @@ public class DogsRemoteImpl implements DogsRemote {
 
     @Override
     public Single<Dogs> getDogs() {
-        return retrofitService.createClient(BASE_URL)
+        return retrofitService.createClient()
                 .getDogs()
                 .subscribeOn(Schedulers.io());
     }
