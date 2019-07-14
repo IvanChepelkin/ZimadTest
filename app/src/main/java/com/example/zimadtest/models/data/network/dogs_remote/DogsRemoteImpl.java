@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class DogsRemoteImpl implements DogsRemote {
     private RetrofitService retrofitService;
-    private String BASE_URL = "http://kot3.com/xim/api.php?query=dog";
+    private String BASE_URL = "https://kot3.com/";
 
     public DogsRemoteImpl(RetrofitService retrofitService) {
         this.retrofitService = retrofitService;

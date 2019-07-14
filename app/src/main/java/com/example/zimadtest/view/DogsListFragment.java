@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
+import com.example.zimadtest.di.model_factory.ModelFactory;
 import com.example.zimadtest.viewModels.DogViewModel;
 
 public class DogsListFragment extends Fragment {
@@ -25,7 +26,7 @@ public class DogsListFragment extends Fragment {
         dogRecyclerView = (RecyclerView) v.findViewById(R.id.dog_recyclerView);
         dogRecyclerView.setHasFixedSize(true);
         dogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        model = ViewModelProviders.of(this).get(DogViewModel.class);
+        model = ViewModelProviders.of(this, new ModelFactory()).get(DogViewModel.class);
         return v;
     }
 }

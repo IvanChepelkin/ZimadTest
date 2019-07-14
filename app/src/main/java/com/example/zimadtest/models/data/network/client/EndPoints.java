@@ -7,6 +7,6 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface EndPoints {
-    @GET()
+    @GET("xim/api.php?query=dog")
     Single<Dogs> getDogs();
 }
