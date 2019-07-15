@@ -5,21 +5,19 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.example.zimadtest.di.Factory;
-import com.example.zimadtest.viewModels.DogViewModel;
+import com.example.zimadtest.viewModels.CatViewModel;
 
-public class ModelFactory extends ViewModelProvider.NewInstanceFactory {
-
-    public ModelFactory() {
+public class CatViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+    public CatViewModelFactory() {
         super();
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass == DogViewModel.class) {
-            return (T) new DogViewModel(Factory.createObjectDogsUseCase());
+        if (modelClass == CatViewModel.class) {
+            return (T) new CatViewModel(Factory.createObjectCatsUseCase());
         }
         return null;
     }
 }
-

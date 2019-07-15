@@ -1,5 +1,7 @@
 package com.example.zimadtest.view.dog_view;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.di.model_factory.ModelFactory;
+import com.example.zimadtest.di.model_factory.DogViewModelFactory;
+import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
 import com.example.zimadtest.viewModels.DogViewModel;
+import java.util.List;
 
-public class DogsListFragment extends Fragment implements DogAdapter.ItemListener{
+public class DogsListFragment extends Fragment implements DogAdapter.DogItemListener {
     private RecyclerView dogRecyclerView;
     private DogAdapter dogAdapter;
     private DogViewModel model;
@@ -24,21 +28,36 @@ public class DogsListFragment extends Fragment implements DogAdapter.ItemListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dogs_fragment, container, false);
-
-        dogRecyclerView = (RecyclerView) v.findViewById(R.id.dog_recyclerView);
-
-        dogAdapter = new DogAdapter(this);
-        dogRecyclerView.setHasFixedSize(true);
-        DogAdapter dogAdapter = new DogAdapter(this);;
-        dogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        model = ViewModelProviders.of(this, new ModelFactory()).get(DogViewModel.class);
+        initViews(v);
         return v;
     }
 
+    private void initViews(View view) {
+        dogRecyclerView = view.findViewById(R.id.dog_recyclerView);
+        dogAdapter = new DogAdapter(this);
+        dogRecyclerView.setHasFixedSize(true);
+        dogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        dogAdapter = new DogAdapter(this);
+    }
+
     @Override
-    public void onItemClick(int position) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        model = ViewModelProviders.of(this, new DogViewModelFactory()).get(DogViewModel.class);
+
+        LiveData<List<DogItem>> data = model.getData();
+        data.observe(getViewLifecycleOwner(), new Observer<List<DogItem>>() {
+            @Override
+            public void onChanged(@Nullable List<DogItem> dogItems) {
+                dogRecyclerView.setAdapter(dogAdapter);
+                dogAdapter.setDogItemList(dogItems);
+            }
+        });
+    }
+
+    @Override
+    public void onDogItemClick(int position) {
 
     }
 }

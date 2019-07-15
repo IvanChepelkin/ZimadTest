@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/dog_image"
+                android:id="@+id/cat_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -34,14 +34,14 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/dog_item_number"
+                    android:id="@+id/cat_item_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:textSize="12sp"
                     android:textStyle="italic" />
                 <TextView
-                    android:id="@+id/dog_item_information"
+                    android:id="@+id/cat_item_information"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"

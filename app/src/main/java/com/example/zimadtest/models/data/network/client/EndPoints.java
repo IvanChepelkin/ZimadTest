@@ -1,5 +1,6 @@
 package com.example.zimadtest.models.data.network.client;
 
+import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
 import com.example.zimadtest.models.domain.dogs.dog_entity.Dogs;
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -9,5 +10,5 @@ public interface EndPoints {
     Single<Dogs> getDogs();
 
     @GET("xim/api.php?query=cat")
-    Single<Dogs> getCats();
+    Single<Cats> getCats();
 }

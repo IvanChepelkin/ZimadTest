@@ -4,9 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
-import com.example.zimadtest.models.domain.dogs.dog_entity.Dogs;
-import com.example.zimadtest.models.domain.dogs.dog_usecase.GetDogsUseCase;
+import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
+import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
+import com.example.zimadtest.models.domain.cats.cat_usecase.GetCatsUseCse;
 
 import java.util.List;
 
@@ -15,29 +15,29 @@ import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-public class DogViewModel extends ViewModel {
-    private GetDogsUseCase getDogsUseCase;
-    private MutableLiveData<List<DogItem>> data;
+public class CatViewModel extends ViewModel {
+    private GetCatsUseCse getCatsUseCse;
+    private MutableLiveData<List<CatItem>> data;
 
-    public DogViewModel(GetDogsUseCase getDogsUseCase) {
-        this.getDogsUseCase = getDogsUseCase;
-        loadDogs();
+    public CatViewModel(GetCatsUseCse getCatsUseCse) {
+        this.getCatsUseCse = getCatsUseCse;
+        loadCats();
     }
 
-    private void loadDogs() {
-        Single<Dogs> responce = getDogsUseCase.getDogs();
+    private void loadCats() {
+        Single<Cats> responce = getCatsUseCse.getCats();
         responce
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Dogs>() {
+                .subscribe(new SingleObserver<Cats>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(Dogs dogs) {
+                    public void onSuccess(Cats cats) {
+                        data.postValue(cats.getCatItemList());
 
-                        data.postValue(dogs.getDogItemList());
                     }
 
                     @Override
@@ -47,9 +47,8 @@ public class DogViewModel extends ViewModel {
                 });
     }
 
-    public LiveData<List<DogItem>> getData() {
+    public LiveData<List<CatItem>> getData() {
 
         return data = new MutableLiveData<>();
     }
-
 }

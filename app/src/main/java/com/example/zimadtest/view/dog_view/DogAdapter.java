@@ -11,11 +11,11 @@ import java.util.List;
 
 public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
     private List<DogItem> dogItemList;
-    private ItemListener itemListener;
+    private DogItemListener dogItemListener;
 
-    public DogAdapter(ItemListener itemListener) {
+    public DogAdapter(DogItemListener dogItemListener) {
         super();
-        this.itemListener = itemListener;
+        this.dogItemListener = dogItemListener;
     }
 
     public void setDogItemList(List<DogItem> dogItemList) {
@@ -31,7 +31,6 @@ public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
     @Override
     public void onBindViewHolder(@NonNull DogHolder dogHolder, int position) {
         dogHolder.bind(dogItemList.get(position), position);
-
     }
 
     @Override
@@ -39,7 +38,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
         return dogItemList.size();
     }
 
-    public interface ItemListener {
-        void onItemClick(int position);
+    public interface DogItemListener {
+        void onDogItemClick(int position);
     }
 }

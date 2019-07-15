@@ -1,4 +1,4 @@
-package com.example.zimadtest.view.dog_view;
+package com.example.zimadtest.view.cat_view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,34 +13,36 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.zimadtest.R;
-import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
+import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
+import com.example.zimadtest.view.dog_view.DogHolder;
 
-public class DogHolder extends RecyclerView.ViewHolder {
+public class CatHolder extends RecyclerView.ViewHolder {
     private RequestManager requestManager = null;
     private View root;
-    private ImageView dogImage;
-    private TextView dog_item_number;
-    private TextView dog_item_information;
-    private DogAdapter.DogItemListener dogItemListener;
+    private ImageView catImage;
+    private TextView cat_item_number;
+    private TextView cat_item_information;
+    private CatAdapter.CatItemListener catItemListener;
     private int position;
 
-    public DogHolder(@NonNull View itemView) {
+    public CatHolder(@NonNull View itemView) {
         super(itemView);
         root = itemView;
-        dogImage = itemView.findViewById(R.id.dog_image);
-        dog_item_number = itemView.findViewById(R.id.dog_item_number);
-        dog_item_information = itemView.findViewById(R.id.dog_item_information);
+        catImage = itemView.findViewById(R.id.cat_image);
+        cat_item_number = itemView.findViewById(R.id.cat_item_number);
+        cat_item_information = itemView.findViewById(R.id.dog_item_information);
         root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dogItemListener.onDogItemClick(position);
+                catItemListener.onCatItemClick(position);
             }
         });
     }
 
-    void bind(DogItem dogItem, int position) {
+
+    void bind(CatItem catItem, int position) {
         this.position = position;
-        dog_item_number.setText(dogItem.getTitle());
+        cat_item_number.setText(catItem.getTitle());
 //        Glide
 //                .with(root.getContext()) // replace with 'this' if it's in activity
 //                .load(dogItem.getUrl())
@@ -48,7 +50,7 @@ public class DogHolder extends RecyclerView.ViewHolder {
 
         // Create glide request builder.
         requestManager = Glide.with(itemView.getContext());
-        RequestBuilder requestBuilder = requestManager.load(dogItem.getUrl());
+        RequestBuilder requestBuilder = requestManager.load(catItem.getUrl());
 
         // Create glide request option.
         RequestOptions requestOptions = new RequestOptions();
@@ -57,11 +59,11 @@ public class DogHolder extends RecyclerView.ViewHolder {
         requestBuilder.apply(requestOptions);
 
         // Load image to image view to display.
-        requestBuilder.into(dogImage);
+        requestBuilder.into(catImage);
 
     }
 
-    static DogHolder create(LayoutInflater inflater, ViewGroup parent) {
-        return new DogHolder(inflater.inflate(R.layout.dog_card, parent, false));
+    static CatHolder create(LayoutInflater inflater, ViewGroup parent) {
+        return new CatHolder(inflater.inflate(R.layout.cat_card, parent, false));
     }
 }
