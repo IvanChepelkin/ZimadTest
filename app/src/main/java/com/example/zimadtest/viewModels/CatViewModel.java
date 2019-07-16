@@ -3,6 +3,7 @@ package com.example.zimadtest.viewModels;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.support.v4.app.FragmentTransaction;
 
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
 import com.example.zimadtest.models.domain.cats.cat_entity.Cats;

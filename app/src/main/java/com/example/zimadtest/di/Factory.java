@@ -1,5 +1,7 @@
 package com.example.zimadtest.di;
 
+import android.content.Context;
+
 import com.example.zimadtest.models.data.catRepo.CatsRepositoryImpl;
 import com.example.zimadtest.models.data.dogRepo.DogsRepositoryImpl;
 import com.example.zimadtest.models.data.network.cats_remote.CatsRemoteImpl;
@@ -11,6 +13,9 @@ import com.example.zimadtest.models.domain.dogs.dog_usecase.GetDogsUseCase;
 import com.example.zimadtest.models.domain.dogs.dog_usecase.GetDogsUseCaseImpl;
 
 public class Factory {
+
+    private static Context context;
+
 
     private static RetrofitService createObjectRetrofitService() {
         return new RetrofitService();
@@ -28,15 +33,16 @@ public class Factory {
         return new GetDogsUseCaseImpl(Factory.createObjectDogsRepository());
     }
 
-    public static CatsRemoteImpl createObjectCatsRemoteImpl() {
+    private static CatsRemoteImpl createObjectCatsRemoteImpl() {
         return new CatsRemoteImpl(Factory.createObjectRetrofitService());
     }
 
-    public static CatsRepositoryImpl createObjectCatsRepository() {
+    private static CatsRepositoryImpl createObjectCatsRepository() {
         return new CatsRepositoryImpl(Factory.createObjectCatsRemoteImpl());
     }
 
     public static GetCatsUseCse createObjectCatsUseCase() {
         return new GetCatsUseCaseImpl(Factory.createObjectCatsRepository());
     }
+
 }

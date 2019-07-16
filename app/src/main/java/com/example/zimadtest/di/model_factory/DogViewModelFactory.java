@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.example.zimadtest.di.Factory;
-import com.example.zimadtest.viewModels.CatViewModel;
 import com.example.zimadtest.viewModels.DogViewModel;
 
 public class DogViewModelFactory extends ViewModelProvider.NewInstanceFactory {

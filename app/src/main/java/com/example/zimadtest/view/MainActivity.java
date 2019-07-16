@@ -3,6 +3,7 @@ package com.example.zimadtest.view;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
@@ -14,8 +15,11 @@ import com.example.zimadtest.view.dog_view.DogsListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    DogsListFragment dogsListFragment;
-    CatsListFragment catsListFragment;
+    private DogsListFragment dogsListFragment;
+    private CatsListFragment catsListFragment;
+    private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+    private FragmentManager fm;
+    private Fragment active;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         dogsListFragment = new DogsListFragment();
         catsListFragment = new CatsListFragment();
+
+        fm = getSupportFragmentManager();
+
+        active = dogsListFragment;
+
+        fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
+        fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
+
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -38,20 +51,16 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    loadFragment(catsListFragment);
+                    fm.beginTransaction().hide(active).show(dogsListFragment).commit();
+                    active = dogsListFragment;
+                    return true;
                 case R.id.navigation_dashboard:
-                    loadFragment(dogsListFragment);
-
+                    fm.beginTransaction().hide(active).show(catsListFragment).commit();
+                    active = catsListFragment;
+                    return true;
             }
             return false;
         }
     };
-
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_content, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 
 }

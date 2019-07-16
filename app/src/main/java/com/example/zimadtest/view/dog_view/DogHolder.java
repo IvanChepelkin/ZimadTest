@@ -49,14 +49,8 @@ public class DogHolder extends RecyclerView.ViewHolder {
         // Create glide request builder.
         requestManager = Glide.with(itemView.getContext());
         RequestBuilder requestBuilder = requestManager.load(dogItem.getUrl());
-
-        // Create glide request option.
         RequestOptions requestOptions = new RequestOptions();
-
-        // Apply glide request options.
         requestBuilder.apply(requestOptions);
-
-        // Load image to image view to display.
         requestBuilder.into(dogImage);
 
     }
