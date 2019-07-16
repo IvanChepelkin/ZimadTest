@@ -9,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.zimadtest.R;
 import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
 
 public class DogHolder extends RecyclerView.ViewHolder {
-    private RequestManager requestManager = null;
     private View root;
     private ImageView dogImage;
     private TextView dog_item_number;
@@ -41,17 +37,10 @@ public class DogHolder extends RecyclerView.ViewHolder {
     void bind(DogItem dogItem, int position) {
         this.position = position;
         dog_item_number.setText(dogItem.getTitle());
-//        Glide
-//                .with(root.getContext()) // replace with 'this' if it's in activity
-//                .load(dogItem.getUrl())
-//                .into(dogImage);
-
-        // Create glide request builder.
-        requestManager = Glide.with(itemView.getContext());
-        RequestBuilder requestBuilder = requestManager.load(dogItem.getUrl());
-        RequestOptions requestOptions = new RequestOptions();
-        requestBuilder.apply(requestOptions);
-        requestBuilder.into(dogImage);
+        Glide
+                .with(root.getContext()) // replace with 'this' if it's in activity
+                .load(dogItem.getUrl())
+                .into(dogImage);
 
     }
 

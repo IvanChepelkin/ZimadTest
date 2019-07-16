@@ -25,23 +25,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        initViews(savedInstanceState);
     }
 
-    private void initViews() {
-        dogsListFragment = new DogsListFragment();
-        catsListFragment = new CatsListFragment();
+    private void initViews(Bundle savedInstanceState) {
+            dogsListFragment = new DogsListFragment();
+            catsListFragment = new CatsListFragment();
 
-        fm = getSupportFragmentManager();
+            fm = getSupportFragmentManager();
 
-        active = dogsListFragment;
+            active = dogsListFragment;
 
-        fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
-        fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
+            fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
+            fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -62,5 +63,4 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-
 }

@@ -9,15 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.zimadtest.R;
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
-import com.example.zimadtest.view.dog_view.DogHolder;
 
 public class CatHolder extends RecyclerView.ViewHolder {
-    private RequestManager requestManager = null;
     private View root;
     private ImageView catImage;
     private TextView cat_item_number;
@@ -39,28 +34,13 @@ public class CatHolder extends RecyclerView.ViewHolder {
         });
     }
 
-
     void bind(CatItem catItem, int position) {
         this.position = position;
         cat_item_number.setText(catItem.getTitle());
-//        Glide
-//                .with(root.getContext()) // replace with 'this' if it's in activity
-//                .load(dogItem.getUrl())
-//                .into(dogImage);
-
-        // Create glide request builder.
-        requestManager = Glide.with(itemView.getContext());
-        RequestBuilder requestBuilder = requestManager.load(catItem.getUrl());
-
-        // Create glide request option.
-        RequestOptions requestOptions = new RequestOptions();
-
-        // Apply glide request options.
-        requestBuilder.apply(requestOptions);
-
-        // Load image to image view to display.
-        requestBuilder.into(catImage);
-
+        Glide
+                .with(root.getContext()) // replace with 'this' if it's in activity
+                .load(catItem.getUrl())
+                .into(catImage);
     }
 
     static CatHolder create(LayoutInflater inflater, ViewGroup parent) {
