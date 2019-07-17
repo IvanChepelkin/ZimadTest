@@ -14,15 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.di.model_factory.DogViewModelFactory;
+import com.example.zimadtest.di.AppComponent;
+import com.example.zimadtest.di.ViewModelProviderFactory;
 import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
 import com.example.zimadtest.viewModels.DogViewModel;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class DogsListFragment extends Fragment implements DogAdapter.DogItemListener {
     private RecyclerView dogRecyclerView;
     private DogAdapter dogAdapter;
     private DogViewModel model;
+
+    @Inject
+    ViewModelProviderFactory viewModelProviderFactory;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +55,9 @@ public class DogsListFragment extends Fragment implements DogAdapter.DogItemList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        model = ViewModelProviders.of(this, new DogViewModelFactory()).get(DogViewModel.class);
+       // AppComponent appComponent = ;
+
+        model = ViewModelProviders.of(this, viewModelProviderFactory).get(DogViewModel.class);
 
         LiveData<List<DogItem>> data = model.getData();
         data.observe(getViewLifecycleOwner(), new Observer<List<DogItem>>() {

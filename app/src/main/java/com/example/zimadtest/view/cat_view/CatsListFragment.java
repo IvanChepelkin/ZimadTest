@@ -14,18 +14,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.di.model_factory.CatViewModelFactory;
+import com.example.zimadtest.di.ViewModelProviderFactory;
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
-import com.example.zimadtest.view.dog_view.DogAdapter;
 import com.example.zimadtest.viewModels.CatViewModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class CatsListFragment extends Fragment implements CatAdapter.CatItemListener {
 
     private RecyclerView catRecyclerView;
     private CatAdapter catAdapter;
     private CatViewModel model;
+
+    @Inject
+    ViewModelProviderFactory viewModelProviderFactory;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +57,7 @@ public class CatsListFragment extends Fragment implements CatAdapter.CatItemList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        model = ViewModelProviders.of(this, new CatViewModelFactory()).get(CatViewModel.class);
+        model = ViewModelProviders.of(this, viewModelProviderFactory).get(CatViewModel.class);
 
         LiveData<List<CatItem>> data = model.getData();
         data.observe(getViewLifecycleOwner(), new Observer<List<CatItem>>() {

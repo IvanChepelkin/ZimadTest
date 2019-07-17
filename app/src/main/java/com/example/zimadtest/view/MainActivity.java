@@ -25,19 +25,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews(savedInstanceState);
+        initViews();
     }
 
-    private void initViews(Bundle savedInstanceState) {
-            dogsListFragment = new DogsListFragment();
-            catsListFragment = new CatsListFragment();
+    private void initViews() {
+        dogsListFragment = new DogsListFragment();
+        catsListFragment = new CatsListFragment();
 
-            fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
 
-            active = dogsListFragment;
+        active = dogsListFragment;
 
-            fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
-            fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
+        fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
+        fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -52,15 +52,18 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fm.beginTransaction().hide(active).show(dogsListFragment).commit();
-                    active = dogsListFragment;
+                    setActiveFragment(dogsListFragment);
                     return true;
                 case R.id.navigation_dashboard:
-                    fm.beginTransaction().hide(active).show(catsListFragment).commit();
-                    active = catsListFragment;
+                    setActiveFragment(catsListFragment);
                     return true;
             }
             return false;
         }
     };
+
+    private void setActiveFragment(Fragment fragment) {
+        fm.beginTransaction().hide(active).show(fragment).commit();
+        active = fragment;
+    }
 }

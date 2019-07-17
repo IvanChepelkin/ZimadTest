@@ -14,9 +14,6 @@ import com.example.zimadtest.models.domain.dogs.dog_usecase.GetDogsUseCaseImpl;
 
 public class Factory {
 
-    private static Context context;
-
-
     private static RetrofitService createObjectRetrofitService() {
         return new RetrofitService();
     }
