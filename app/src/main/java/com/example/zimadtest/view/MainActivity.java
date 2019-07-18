@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
             dogsListFragment = new DogsListFragment();
             catsListFragment = new CatsListFragment();
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
             fm.beginTransaction().add(R.id.fragment_content, catsListFragment, "2").hide(catsListFragment).commit();
             fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
+        }
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

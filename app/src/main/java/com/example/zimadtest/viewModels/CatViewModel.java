@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.v4.app.FragmentTransaction;
 
+import com.example.zimadtest.di.Factory;
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
 import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
 import com.example.zimadtest.models.domain.cats.cat_usecase.GetCatsUseCse;
@@ -20,8 +21,8 @@ public class CatViewModel extends ViewModel {
     private GetCatsUseCse getCatsUseCse;
     private MutableLiveData<List<CatItem>> data;
 
-    public CatViewModel(GetCatsUseCse getCatsUseCse) {
-        this.getCatsUseCse = getCatsUseCse;
+    public CatViewModel() {
+        this.getCatsUseCse = Factory.createObjectCatsUseCase();
         loadCats();
     }
 

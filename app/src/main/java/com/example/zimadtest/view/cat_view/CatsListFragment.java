@@ -14,9 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.di.model_factory.CatViewModelFactory;
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
-import com.example.zimadtest.view.dog_view.DogAdapter;
 import com.example.zimadtest.viewModels.CatViewModel;
 
 import java.util.List;
@@ -25,7 +23,7 @@ public class CatsListFragment extends Fragment implements CatAdapter.CatItemList
 
     private RecyclerView catRecyclerView;
     private CatAdapter catAdapter;
-    private CatViewModel model;
+    private CatViewModel catViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,10 +50,10 @@ public class CatsListFragment extends Fragment implements CatAdapter.CatItemList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        model = ViewModelProviders.of(this, new CatViewModelFactory()).get(CatViewModel.class);
+        catViewModel = ViewModelProviders.of(this).get(CatViewModel.class);
 
-        LiveData<List<CatItem>> data = model.getData();
-        data.observe(getViewLifecycleOwner(), new Observer<List<CatItem>>() {
+        LiveData<List<CatItem>> data = catViewModel.getData();
+        data.observe(this, new Observer<List<CatItem>>() {
             @Override
             public void onChanged(@Nullable List<CatItem> catItems) {
                 catRecyclerView.setAdapter(catAdapter);
