@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
+import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
 import com.example.zimadtest.viewModels.CatViewModel;
 
 import java.util.List;
@@ -52,12 +53,12 @@ public class CatsListFragment extends Fragment implements CatAdapter.CatItemList
 
         catViewModel = ViewModelProviders.of(this).get(CatViewModel.class);
 
-        LiveData<List<CatItem>> data = catViewModel.getData();
-        data.observe(this, new Observer<List<CatItem>>() {
+        LiveData<Cats> data = catViewModel.getData();
+        data.observe(this, new Observer<Cats>() {
             @Override
-            public void onChanged(@Nullable List<CatItem> catItems) {
+            public void onChanged(@Nullable Cats cats) {
                 catRecyclerView.setAdapter(catAdapter);
-                catAdapter.setCatItemList(catItems);
+                catAdapter.setCatItemList(cats);
             }
 
         });

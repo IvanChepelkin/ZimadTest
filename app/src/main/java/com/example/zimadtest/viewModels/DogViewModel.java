@@ -18,7 +18,7 @@ import io.reactivex.disposables.Disposable;
 
 public class DogViewModel extends ViewModel {
     private GetDogsUseCase getDogsUseCase;
-    private MutableLiveData<List<DogItem>> data = new MutableLiveData<>();
+    private MutableLiveData<Dogs> data = new MutableLiveData<>();
 
     public DogViewModel() {
         this.getDogsUseCase = Factory.createObjectDogsUseCase();
@@ -39,7 +39,7 @@ public class DogViewModel extends ViewModel {
                         @Override
                         public void onSuccess(Dogs dogs) {
 
-                            data.postValue(dogs.getDogItemList());
+                            data.postValue(dogs);
                         }
 
                         @Override
@@ -49,7 +49,7 @@ public class DogViewModel extends ViewModel {
                     });
     }
 
-    public LiveData<List<DogItem>> getData() {
+    public LiveData<Dogs> getData() {
 
         return data;
     }

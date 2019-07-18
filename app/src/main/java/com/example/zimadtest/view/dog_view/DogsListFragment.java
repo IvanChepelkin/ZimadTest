@@ -14,9 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
+import com.example.zimadtest.models.domain.dogs.dog_entity.Dogs;
 import com.example.zimadtest.viewModels.DogViewModel;
-import java.util.List;
 
 public class DogsListFragment extends Fragment implements DogAdapter.DogItemListener {
     private RecyclerView dogRecyclerView;
@@ -50,12 +49,12 @@ public class DogsListFragment extends Fragment implements DogAdapter.DogItemList
 
         dogViewModel = ViewModelProviders.of(this).get(DogViewModel.class);
 
-        LiveData<List<DogItem>> data = dogViewModel.getData();
-        data.observe(this, new Observer<List<DogItem>>() {
+        LiveData<Dogs> data = dogViewModel.getData();
+        data.observe(this, new Observer<Dogs>() {
             @Override
-            public void onChanged(@Nullable List<DogItem> dogItems) {
+            public void onChanged(@Nullable Dogs dogs) {
                 dogRecyclerView.setAdapter(dogAdapter);
-                dogAdapter.setDogItemList(dogItems);
+                dogAdapter.setDogs(dogs);
             }
         });
     }

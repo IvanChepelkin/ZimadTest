@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
-
-import java.util.List;
+import com.example.zimadtest.models.domain.dogs.dog_entity.Dogs;
 
 public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
-    private List<DogItem> dogItemList;
+    private Dogs dogs;
     private DogItemListener dogItemListener;
 
     public DogAdapter(DogItemListener dogItemListener) {
@@ -18,8 +16,8 @@ public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
         this.dogItemListener = dogItemListener;
     }
 
-    public void setDogItemList(List<DogItem> dogItemList) {
-        this.dogItemList = dogItemList;
+    public void setDogs(Dogs dogs) {
+        this.dogs = dogs;
     }
 
     @NonNull
@@ -30,12 +28,12 @@ public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DogHolder dogHolder, int position) {
-        dogHolder.bind(dogItemList.get(position), position);
+        dogHolder.bind(dogs.getDogItemList().get(position), position, dogs.getMessage());
     }
 
     @Override
     public int getItemCount() {
-        return dogItemList.size();
+        return dogs.getDogItemList().size();
     }
 
     public interface DogItemListener {

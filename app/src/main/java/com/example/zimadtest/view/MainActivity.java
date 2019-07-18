@@ -2,6 +2,7 @@ package com.example.zimadtest.view;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,16 +18,18 @@ public class MainActivity extends AppCompatActivity {
 
     private DogsListFragment dogsListFragment;
     private CatsListFragment catsListFragment;
-    private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentManager fm;
     private Fragment active;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews(savedInstanceState);
+        bindWidgetsWithAnEvent();
     }
+
 
     private void initViews(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
@@ -41,28 +44,38 @@ public class MainActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.fragment_content, dogsListFragment, "1").commit();
         }
 
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
+        tabLayout = findViewById(R.id.tabLayout);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private void bindWidgetsWithAnEvent() {
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.dog_text), true);
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.cat_teaxt));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                switch (tab.getPosition()) {
+                    case 0:
+                        fm.beginTransaction().hide(active).show(dogsListFragment).commit();
+                        active = dogsListFragment;
+                        break;
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    fm.beginTransaction().hide(active).show(dogsListFragment).commit();
-                    active = dogsListFragment;
-                    return true;
-                case R.id.navigation_dashboard:
-                    fm.beginTransaction().hide(active).show(catsListFragment).commit();
-                    active = catsListFragment;
-                    return true;
+                    case 1:
+                        fm.beginTransaction().hide(active).show(catsListFragment).commit();
+                        active = catsListFragment;
+                        break;
+                }
             }
-            return false;
-        }
-    };
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
 }

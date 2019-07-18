@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.zimadtest.R;
 import com.example.zimadtest.models.domain.dogs.dog_entity.DogItem;
+import com.example.zimadtest.models.domain.dogs.dog_entity.Dogs;
+import com.squareup.picasso.Picasso;
 
 public class DogHolder extends RecyclerView.ViewHolder {
     private View root;
@@ -19,6 +21,7 @@ public class DogHolder extends RecyclerView.ViewHolder {
     private TextView dog_item_information;
     private DogAdapter.DogItemListener dogItemListener;
     private int position;
+    private String dog_info;
 
     public DogHolder(@NonNull View itemView) {
         super(itemView);
@@ -34,12 +37,15 @@ public class DogHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    void bind(DogItem dogItem, int position) {
+    void bind(DogItem dogItem, int position, String dog_info) {
+        this.dog_info = dog_info;
         this.position = position;
         dog_item_number.setText(dogItem.getTitle());
-        Glide
-                .with(root.getContext()) // replace with 'this' if it's in activity
+        dog_item_information.setText(dog_info);
+
+        Picasso.get()
                 .load(dogItem.getUrl())
+                .resize(600, 400)
                 .into(dogImage);
 
     }

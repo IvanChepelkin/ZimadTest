@@ -6,19 +6,20 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
+import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
 
 import java.util.List;
 
 public class CatAdapter extends RecyclerView.Adapter<CatHolder> {
-    private List<CatItem> catItemList;
+    private Cats cats;
     private CatItemListener catItemListener;
 
     public CatAdapter(CatItemListener catItemListener) {
         this.catItemListener = catItemListener;
     }
 
-    public void setCatItemList(List<CatItem> catItemList) {
-        this.catItemList = catItemList;
+    public void setCatItemList(Cats cats) {
+        this.cats = cats;
     }
 
     @NonNull
@@ -29,12 +30,12 @@ public class CatAdapter extends RecyclerView.Adapter<CatHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CatHolder catHolder, int position) {
-        catHolder.bind(catItemList.get(position), position);
+        catHolder.bind(cats.getCatItemList().get(position), position, cats.getMessage());
     }
 
     @Override
     public int getItemCount() {
-        return catItemList.size();
+        return cats.getCatItemList().size();
     }
 
 

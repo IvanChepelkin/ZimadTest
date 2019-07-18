@@ -19,7 +19,7 @@ import io.reactivex.disposables.Disposable;
 
 public class CatViewModel extends ViewModel {
     private GetCatsUseCse getCatsUseCse;
-    private MutableLiveData<List<CatItem>> data;
+    private MutableLiveData<Cats> data;
 
     public CatViewModel() {
         this.getCatsUseCse = Factory.createObjectCatsUseCase();
@@ -38,7 +38,7 @@ public class CatViewModel extends ViewModel {
 
                     @Override
                     public void onSuccess(Cats cats) {
-                        data.postValue(cats.getCatItemList());
+                        data.postValue(cats);
 
                     }
 
@@ -49,7 +49,7 @@ public class CatViewModel extends ViewModel {
                 });
     }
 
-    public LiveData<List<CatItem>> getData() {
+    public LiveData<Cats> getData() {
 
         return data = new MutableLiveData<>();
     }
