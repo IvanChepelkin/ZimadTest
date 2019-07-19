@@ -30,7 +30,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CatHolder catHolder, int position) {
-        catHolder.bind(cats.getCatItemList().get(position), position, cats.getMessage());
+        catHolder.bind(cats.getCatItemList().get(position), position, cats.getMessage(), catItemListener);
     }
 
     @Override

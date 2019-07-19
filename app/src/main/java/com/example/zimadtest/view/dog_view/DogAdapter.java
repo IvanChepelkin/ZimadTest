@@ -28,7 +28,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DogHolder dogHolder, int position) {
-        dogHolder.bind(dogs.getDogItemList().get(position), position, dogs.getMessage());
+        dogHolder.bind(dogs.getDogItemList().get(position), position, dogs.getMessage(), dogItemListener);
     }
 
     @Override

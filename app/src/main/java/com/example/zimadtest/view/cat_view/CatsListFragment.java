@@ -14,11 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.zimadtest.R;
-import com.example.zimadtest.models.domain.cats.cat_entity.CatItem;
 import com.example.zimadtest.models.domain.cats.cat_entity.Cats;
 import com.example.zimadtest.viewModels.CatViewModel;
 
-import java.util.List;
 
 public class CatsListFragment extends Fragment implements CatAdapter.CatItemListener {
 

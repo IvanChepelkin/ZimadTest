@@ -36,9 +36,10 @@ public class CatHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    void bind(CatItem catItem, int position, String catInfo) {
+    void bind(CatItem catItem, int position, String catInfo, CatAdapter.CatItemListener catItemListener) {
         this.position = position;
         this.catInfo = catInfo;
+        this.catItemListener = catItemListener;
         cat_item_information.setText(catInfo);
         cat_item_number.setText(catItem.getTitle());
         Picasso.get()

@@ -1,14 +1,10 @@
 package com.example.zimadtest.view;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
-import android.view.MenuItem;
 
 import com.example.zimadtest.R;
 import com.example.zimadtest.view.cat_view.CatsListFragment;
@@ -69,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
 
             }
 

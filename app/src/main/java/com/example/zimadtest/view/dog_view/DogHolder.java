@@ -37,7 +37,8 @@ public class DogHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    void bind(DogItem dogItem, int position, String dog_info) {
+    void bind(DogItem dogItem, int position, String dog_info, DogAdapter.DogItemListener dogItemListener) {
+        this.dogItemListener = dogItemListener;
         this.dog_info = dog_info;
         this.position = position;
         dog_item_number.setText(dogItem.getTitle());

@@ -30,22 +30,24 @@
             <LinearLayout
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
 
                 <TextView
+                    android:layout_weight="1"
                     android:id="@+id/dog_item_number"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:textSize="12sp"
                     android:textStyle="italic" />
                 <TextView
+                    android:layout_weight="1"
                     android:id="@+id/dog_item_information"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:textSize="12sp"
                     android:textStyle="italic" />
             </LinearLayout>
