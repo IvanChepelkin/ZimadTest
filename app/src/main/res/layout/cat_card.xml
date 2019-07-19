@@ -21,7 +21,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/dog_image"
+                android:id="@+id/cat_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
 
                 <TextView
                     android:layout_weight="1"
-                    android:id="@+id/dog_item_number"
+                    android:id="@+id/cat_item_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -44,10 +44,10 @@
                     android:textStyle="italic" />
                 <TextView
                     android:layout_weight="1"
-                    android:id="@+id/dog_item_information"
+                    android:id="@+id/cat_item_information"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:textSize="12sp"
                     android:textStyle="italic" />
             </LinearLayout>
