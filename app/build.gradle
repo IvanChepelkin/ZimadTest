@@ -50,4 +50,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //ION
     implementation 'com.koushikdutta.ion:ion:2.1.6'
+    //CircleImage
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
